@@ -1,15 +1,13 @@
-Feature: Buying an e-ticket
+Feature: Купуване на електронен билет
 
-	Scenario: The user attempts to buy an e-ticket with sufficient funds.
-		Given The user has marked a shedule entry
-		And the user has sufficient funds
-		When The user clicks the e-ticket buy button
-		Then The user sees the "e-ticket bought successfully" message.
+	Scenario: Опит за купуване на електронен билет с налични средства.
+		Given Потребителят достъпва страницата за купуване на електронен билет
+		And Потребителят разполага с "5" BGN
+		When Потребителят натиска бутона за купуване на електронен билет
+		Then Потребителят вижда съобщение "Успешно закупен електронен билет".
 
-	Scenario: The user attempts to buy an e-ticket with insufficient funds.
-		Given The user has marked a shedule entry
-		And the user has insufficient funds
-		When The user clicks the e-ticket buy button
-		Then The user sees the "Error: insufficient funds" message.
-		
-	
+	Scenario: Опит за купуване на електронен билет с недостатъчно средства.
+		Given Потребителят достъпва страницата за купуване на електронен билет
+		And Потребителят разполага с "1" BGN
+		When Потребителят натиска бутона за купуване на електронен билет
+		Then Потребителят вижда съобщение "Грешка: недостатъчно средства".

@@ -2,7 +2,9 @@ package uni.pu.fmi;
 
 import static org.junit.Assert.assertEquals;
 
-import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import cucumber.api.Transform;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -18,23 +20,24 @@ public class QuerySteps {
 	}
 
 	@Given("^Потребителят въвежда начална гара \"([^\"]*)\"$")
-	public void setFromStation(TrainStation fromStation) throws Throwable {
-		this.queryScreenModel.setFromStation(fromStation);
+	public void setFromStation(String fromStation) throws Throwable {
+		this.queryScreenModel.setFromStation(new TrainStation(fromStation));
 	}
 
 	@Given("^Потребителят въвежда крайна гара \"([^\"]*)\"$")
-	public void потребителят_въвежда_крайна_гара(TrainStation toStation) throws Throwable {
-		this.queryScreenModel.setToStation(toStation);
+	public void setToStation(String toStation) throws Throwable {
+		this.queryScreenModel.setToStation(new TrainStation(toStation));
 	}
-
+	
 	@Given("^Потребителят въвежда начални дата и час \"([^\"]*)\"$")
-	public void setDate1(String date1) throws Throwable {
-		this.queryScreenModel.setDate1(new SimpleDateFormat("yyyy-MM-dd").parse(date1));
+	public void setDate1(@Transform(DateMapper.class) Date date1) throws Throwable {
+		this.queryScreenModel.setDate1(date1);
 	}
 
 	@Given("^Потребителят въвежда крайни дата и час \"([^\"]*)\"$")
-	public void setDate2(String date2) throws Throwable {
-		this.queryScreenModel.setDate2(new SimpleDateFormat("yyyy-MM-dd").parse(date2));
+	public void setDate2(@Transform(DateMapper.class) Date date2) throws Throwable {
+		
+		this.queryScreenModel.setDate2(date2);
 	}
 
 	@When("^Потребителят натиска бутона за търсене$")

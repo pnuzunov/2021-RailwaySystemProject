@@ -30,20 +30,18 @@ public class RailwayManager {
     	this.courses = courses;
     	this.entries = entries;
     }
-        
-    /**
-     * @param course 
-     * @param date1 
-     * @param date2 
-     * @return
-     */
+
     public ScheduleQueryResult getEntries(TrainStation fromStation, TrainStation toStation, Date date1, Date date2) {
     	
-    	if(null == fromStation) {
+    	if(null == fromStation || null == toStation) {
+    		return new ScheduleQueryResult(null, "");
+    	}
+    	
+    	if("".equals(fromStation.getName())) {
     		return new ScheduleQueryResult(null, "Моля, въведете начална спирка.");
     	}
     		
-    	if(null == toStation) {
+    	if("".equals(toStation.getName())) {
     		return new ScheduleQueryResult(null, "Моля, въведете крайна спирка.");
     	}
     		
@@ -55,7 +53,7 @@ public class RailwayManager {
     		return new ScheduleQueryResult(null, "Моля, въведете крайна дата.");
     	}
     	
-    	if(fromStation.getName() == toStation.getName()) {
+    	if(fromStation.getName().equals(toStation.getName())) {
     		return new ScheduleQueryResult(null, "Начална и крайна гара трябва да са различни.");
     	}
     	
@@ -64,15 +62,16 @@ public class RailwayManager {
     	}
     	
     	List<ScheduleEntry> result = this.entries.stream()
-        .filter(x -> x.getCourse().getFromStation() == fromStation
-        			 && x.getCourse().getToStation() == toStation
-        			 && x.getDate().after(date1))
+        .filter(   x -> x.getCourse().getFromStation().getName() == fromStation.getName()
+        			 && x.getCourse().getToStation().getName() == toStation.getName()
+        			 && !x.getDate().before(date1)
+        			 && !x.getDate().after(date2))
         .collect(Collectors.toList());
     	
-    	if(null == result)
+    	if(result.isEmpty())
     		return new ScheduleQueryResult(null, "Няма данни за направеното търсене.");
     		
-    	return new ScheduleQueryResult(result, "Направление София-Пловдив в периода 01.01 - 02.01");
+    	return new ScheduleQueryResult(result, "Списък с пътувания");
     }
 
     /**

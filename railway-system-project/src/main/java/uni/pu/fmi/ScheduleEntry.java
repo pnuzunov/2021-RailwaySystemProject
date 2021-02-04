@@ -80,8 +80,7 @@ public class ScheduleEntry {
      * @return
      */
     public Course getCourse() {
-        // TODO implement here
-        return null;
+        return this.course;
     }
 
     /**

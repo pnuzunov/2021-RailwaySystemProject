@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import uni.pu.fmi.Course;
+import uni.pu.fmi.DateMapper;
 import uni.pu.fmi.RailwayManager;
 import uni.pu.fmi.ScheduleEntry;
 import uni.pu.fmi.ScheduleQueryResult;
@@ -30,13 +31,9 @@ public class QueryScreenModel {
 				new Course(new TrainStation("Sofia"), new TrainStation("Plovdiv"), 1.25f)
 		);
 		
-		try {
-			entries.add(
-				new ScheduleEntry(new SimpleDateFormat("yyyy-MM-dd").parse("2021-01-01"), courses.get(0))	
-			);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		entries.add(
+			new ScheduleEntry(new DateMapper().transform("02-01-2021"), courses.get(0))	
+		);
 		
 		this.railwayManager = new RailwayManager(courses, entries);
 		

@@ -12,7 +12,11 @@ public class Client extends User {
     	this.currentFunds = currentFunds;
     }
 
-    /**
+    public Client() {
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
      * 
      */
     private ETicketRepository eTicketRepo;
@@ -31,10 +35,17 @@ public class Client extends User {
      * @param entry
      */
     public String buyTicket(ScheduleEntry entry) {
-    	if(entry.getPrice() > this.currentFunds)
+    	if(null == entry)
+    		return "Грешка: няма избран маршрут";
+    	else if(entry.getPrice() > this.currentFunds)
     		return "Грешка: недостатъчно средства";
 		else
 			return "Успешно закупен електронен билет";
     }
+
+
+	public void setFunds(float funds) {
+		this.currentFunds = funds;
+	}
 
 }

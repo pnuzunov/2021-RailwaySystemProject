@@ -22,6 +22,11 @@ public class ETicketSteps {
 	    this.eTicketScreen.setCurrentFunds(funds);
 	}
 
+	@When("^Потребителят избере желания маршрут$")
+	public void setEntry() throws Throwable {
+	    this.eTicketScreen.setEntry();
+	}
+	
 	@When("^Потребителят натиска бутона за купуване на електронен билет$")
 	public void clickBuyButton() throws Throwable {
 	    this.eTicketScreen.clickBuyButton();

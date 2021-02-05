@@ -18,26 +18,29 @@ public class ETicketScreenModel {
 	private Client client;
 	private RailwayManager railwayManager;
 	private String message;
+	private List<ScheduleEntry> entries;
+	private List<Course> courses;
 	
 	public void navigate() {
 		System.out.println("Потребителят достъпва страницата за купуване на електронен билет");
-		List<Course> courses = new ArrayList<Course>();
-		List<ScheduleEntry> entries = new ArrayList<ScheduleEntry>();
+		courses = new ArrayList<Course>();
+		entries = new ArrayList<ScheduleEntry>();
 		
 		courses.add(
 				new Course(new TrainStation("Sofia"), new TrainStation("Plovdiv"), 1.25f)
 		);
-		
+		this.client = new Client();
+		this.railwayManager = new RailwayManager(courses, entries);	
+	}
+	
+	public void setEntry() {
 		entries.add(
-			new ScheduleEntry(new Date(System.currentTimeMillis()), courses.get(0))	
-		);
-		
-		this.railwayManager = new RailwayManager(courses, entries);
-		
+				new ScheduleEntry(new Date(System.currentTimeMillis()), courses.get(0))	
+			);
 	}
 	
 	public void setCurrentFunds(float funds) {
-		this.client = new Client(funds);
+		this.client.setFunds(funds);
 	}
 	
 	public void clickBuyButton() {

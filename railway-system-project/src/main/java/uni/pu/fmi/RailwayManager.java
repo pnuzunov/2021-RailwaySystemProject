@@ -79,10 +79,8 @@ public class RailwayManager {
      * @return
      */
     public ScheduleEntry getEntry(int id) {
-        return this.entries.stream()
-        		.filter(x -> x.getId() == id)
-        		.findFirst()
-        		.get();
+    	
+    	return this.entries.size() > 0 ? this.entries.get(id) : null;
     }
 
     /**

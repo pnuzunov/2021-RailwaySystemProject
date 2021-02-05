@@ -6,7 +6,7 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "features")
+@CucumberOptions(features = "features", plugin = {"pretty", "html:target/cucmberRaport"})
 
 public class CucumberStarter {
 

@@ -15,7 +15,7 @@ public class DateMapper extends Transformer<Date> {
 			try {
 				date = new SimpleDateFormat("dd-MM-yyyy").parse(value);
 			} catch (ParseException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 		return date;
 

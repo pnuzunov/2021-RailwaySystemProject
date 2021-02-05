@@ -62,11 +62,11 @@ public class RailwayManager {
     	}
     	
     	List<ScheduleEntry> result = this.entries.stream()
-        .filter(   x -> x.getCourse().getFromStation().getName() == fromStation.getName()
-        			 && x.getCourse().getToStation().getName() == toStation.getName()
+        .filter(   x -> x.getCourse().getFromStation().getName().equals(fromStation.getName())
+        			 && x.getCourse().getToStation().getName().equals(toStation.getName())
         			 && !x.getDate().before(date1)
-        			 && !x.getDate().after(date2))
-        .collect(Collectors.toList());
+        			 && !x.getDate().after(date2)
+        ).collect(Collectors.toList());
     	
     	if(result.isEmpty())
     		return new ScheduleQueryResult(null, "Няма данни за направеното търсене.");

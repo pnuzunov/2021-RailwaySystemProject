@@ -48,8 +48,7 @@ public class ScheduleEntry {
      * @return
      */
     public Date getDate() {
-        // TODO implement here
-        return null;
+        return this.date;
     }
 
     /**

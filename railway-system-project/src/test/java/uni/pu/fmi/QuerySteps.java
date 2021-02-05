@@ -36,7 +36,6 @@ public class QuerySteps {
 
 	@Given("^Потребителят въвежда крайни дата и час \"([^\"]*)\"$")
 	public void setDate2(@Transform(DateMapper.class) Date date2) throws Throwable {
-		
 		this.queryScreenModel.setDate2(date2);
 	}
 

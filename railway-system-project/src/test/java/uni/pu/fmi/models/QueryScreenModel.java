@@ -32,7 +32,7 @@ public class QueryScreenModel {
 		);
 		
 		entries.add(
-			new ScheduleEntry(new DateMapper().transform("02-01-2021"), courses.get(0))	
+			new ScheduleEntry(new DateMapper().transform("01-01-2021"), courses.get(0))	
 		);
 		
 		this.railwayManager = new RailwayManager(courses, entries);

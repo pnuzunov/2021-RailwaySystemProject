@@ -24,13 +24,15 @@ public class RailwayManager {
      * Default constructor
      */
     public RailwayManager() {
+    	this.courses = new ArrayList<Course>();
+    	this.entries = new ArrayList<ScheduleEntry>();
     }
 
     public RailwayManager(List<Course> courses, List<ScheduleEntry> entries) {
     	this.courses = courses;
     	this.entries = entries;
-    }
-
+    }  
+    
     public ScheduleQueryResult getEntries(TrainStation fromStation, TrainStation toStation, Date date1, Date date2) {
     	
     	if(null == fromStation || null == toStation) {
@@ -88,7 +90,7 @@ public class RailwayManager {
      * @return
      */
     public void createEntry(ScheduleEntry entry) {
-        // TODO implement here
+    	this.entries.add(entry);
     }
 
     /**
@@ -104,9 +106,22 @@ public class RailwayManager {
      * @param id 
      * @return
      */
-    public ScheduleEntry deleteEntry(int id) {
-        // TODO implement here
-        return null;
+    public String deleteEntry(int id, User user) {
+    	
+    	if(null == this.getEntry(id)) {
+			return "Моля, изберете запис за изтриване";
+		}
+		else if(null == user) {
+			return "Грешка: не сте логнати в системата";
+		}
+		else if(user instanceof Employee) {
+			this.entries.remove(id);
+			return "Запис успешно изтрит";
+		}
+		else if(user instanceof Client) {
+			return "Грешка: нямате необходимите права за изтриване на запис";
+		}
+    	return "Неочакван резултат";
     }
 
     /**

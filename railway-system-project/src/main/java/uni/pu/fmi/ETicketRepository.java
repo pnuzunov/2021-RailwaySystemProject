@@ -11,6 +11,7 @@ public class ETicketRepository {
      * Default constructor
      */
     public ETicketRepository() {
+    	this.tickets = new ArrayList<ETicket>();
     }
 
     /**

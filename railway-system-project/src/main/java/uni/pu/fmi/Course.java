@@ -11,6 +11,7 @@ public class Course {
      * Default constructor
      */
     public Course() {
+    	
     }
 
     public Course(TrainStation fromStation, TrainStation toStation, float price) {

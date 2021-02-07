@@ -37,10 +37,11 @@ public class Client extends User {
     public String buyTicket(ScheduleEntry entry) {
     	if(null == entry)
     		return "Грешка: няма избран маршрут";
-    	else if(entry.getPrice() > this.currentFunds)
+    	if(entry.getPrice() > this.currentFunds)
     		return "Грешка: недостатъчно средства";
-		else
-			return "Успешно закупен електронен билет";
+		
+    	this.eTicketRepo.createTicket(entry);
+		return "Успешно закупен електронен билет";
     }
 
 

@@ -128,9 +128,8 @@ public class RailwayManager {
      * @param name 
      * @return
      */
-    public Course getCourse(String name) {
-        // TODO implement here
-        return null;
+    public Course getCourse(int id) {
+        return this.courses.get(id);
     }
 
     /**
@@ -156,6 +155,16 @@ public class RailwayManager {
      */
     public void deleteCourse(String name) {
         // TODO implement here
+    }
+    
+    public String deleteCourse(int id) {
+    	Course course = this.getCourse(id);
+    	List<ScheduleEntry> result = this.entries.stream()
+    	        .filter( x -> x.getCourse() == course)
+    	        .collect(Collectors.toList());
+    	if(!result.isEmpty())
+    		return "Грешка: маршрутът не може да бъде изтрит";
+        return "Успешно изтрит запис";
     }
 
 }
